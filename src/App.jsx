@@ -4,11 +4,14 @@ import { MoviesList } from './components/MoviesList';
 import moviesFromServer from './api/movies.json';
 
 function getPreparedMovies(movies, { query }) {
+  const trimmedTitle = query.trim().toLowerCase();
+  const trimmedDescription = query.trim().toLowerCase();
+
   if (query) {
     return movies.filter(
       movie =>
-        movie.title.toLowerCase().includes(query.trim().toLowerCase()) ||
-        movie.description.toLowerCase().includes(query.trim().toLowerCase()),
+        movie.title.toLowerCase().includes(trimmedTitle) ||
+        movie.description.toLowerCase().includes(trimmedDescription),
     );
   }
 
